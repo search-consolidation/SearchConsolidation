@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="news-list-container">
+	<!-- loop this -->
+	<div class="news-container">
+		<div class="news-headline-container">
+			<div class="news-headline">
+				<span class="headline"><a>Lorem Ipsum Personally I found the naming of context objects in generic views extremely</a></span>
+				<div class="headline-border">
+					<span class="dot"></span>
+					<span class="line"></span>
+					<span class="dot"></span>
+				</div>
+				<span class="author">Times Of India</span>
+			</div>
+		</div>
+		<div class="news-text">
+			Personally I found the naming of context objects in generic views extremely
+confusing when first learning Django. Because our context object from
+DetailView is either our model name post or object we could also update
+our template as follows and it would work exactly the same.
+		</div>
+	</div>
+</div>
+{% endblock content %}
