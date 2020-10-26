@@ -4,6 +4,13 @@ body{
 	background-color: #E5E5E5;
 }
 
+input {
+	border: 2px solid black;
+	font-size: 16px;
+	margin: 2% auto;
+	padding: 1vw 5vw;
+}
+
 .nav{
 	display: flex;
 	flex-direction: row;
@@ -37,7 +44,14 @@ body{
 	font-size: 16px;
 }
 
-.nav-item a:hover{
+.nav-item a:hover {
+	background-color: #F7F2F2;
+	color:black;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.nav-item > a:active {
 	background-color: #F7F2F2;
 	color:black;
 	border-radius: 5px;
@@ -62,6 +76,7 @@ body{
 	border-radius: 10px;
 	padding: 2vw;
 	box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
+	margin-bottom: 2vw;
 }
 
 .news-headline-container {

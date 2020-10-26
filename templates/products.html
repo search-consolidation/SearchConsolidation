@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method="post" style="margin:5% 2%;">
+	{% csrf_token %}
+	{{ form }}
+</form>
+
+{% if not data|length %}
+	<p><center>No data found</center></p>
+{% else %}
+	<div class="news-list-container">
+		
+		<!-- list of news cards -->
+		{% for d in data %}
+			<div class="news-container">
+				<div class="news-headline-container">
+					<div class="news-headline">
+						<span class="headline"><a href={{d.link}}>{{d.name}}</a></span>
+						<div class="headline-border">
+							<span class="dot"></span>
+							<span class="line"></span>
+							<span class="dot"></span>
+						</div>
+						<span class="author">{{ d.soldBy }}</span>
+					</div>
+				</div>
+				<div class="news-text">₹ {{d.price}}</div>
+			</div>
+		{% endfor %}
+
+	</div>
+{% endif %}
+{% endblock content %}

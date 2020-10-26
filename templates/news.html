@@ -2,25 +2,26 @@
 
 {% block content %}
 <div class="news-list-container">
-	<!-- loop this -->
-	<div class="news-container">
-		<div class="news-headline-container">
-			<div class="news-headline">
-				<span class="headline"><a>Lorem Ipsum Personally I found the naming of context objects in generic views extremely</a></span>
-				<div class="headline-border">
-					<span class="dot"></span>
-					<span class="line"></span>
-					<span class="dot"></span>
+
+	<!-- list of news cards -->
+	{% for news in toi %}
+		{% if news.text != None %}
+			<div class="news-container">
+				<div class="news-headline-container">
+					<div class="news-headline">
+						<span class="headline"><a href={{news.link}}>{{news.text}}</a></span>
+						<div class="headline-border">
+							<span class="dot"></span>
+							<span class="line"></span>
+							<span class="dot"></span>
+						</div>
+						<span class="author">{{ author }}</span>
+					</div>
 				</div>
-				<span class="author">Times Of India</span>
+				<div class="news-text">{{news.desc}}</div>
 			</div>
-		</div>
-		<div class="news-text">
-			Personally I found the naming of context objects in generic views extremely
-confusing when first learning Django. Because our context object from
-DetailView is either our model name post or object we could also update
-our template as follows and it would work exactly the same.
-		</div>
-	</div>
+		{% endif %}
+	{% endfor %}
+
 </div>
 {% endblock content %}

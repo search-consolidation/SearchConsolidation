@@ -1,4 +1,13 @@
-from django.views.generic import TemplateView
+from django.shortcuts import render
+from Scrapers.controller import Controller
 
-class NewsView(TemplateView):
-	template_name = 'news.html'
+def NewsView(req):
+	data = Controller().controller('headlines')
+	return render(
+		req, 
+		'news.html', 
+		{
+			'toi': data['TimesofIndia'].values(),
+			'author': 'Times of India'
+		}
+	)
