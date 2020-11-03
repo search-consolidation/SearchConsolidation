@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 django = "*"
 scrapy = "*"
+sklearn = "*"
+joblib = "*"
 
 [requires]
 python_version = "3.8"

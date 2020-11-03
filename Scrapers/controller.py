@@ -1,5 +1,6 @@
 from .spiders.NDTVSpider import NDTVSpider
 from .spiders.TimesOfIndiaSpider import TimesOfIndiaSpider
+from .spiders.OnionSpider import OnionSpider
 from .spiders.AmazonSpider import AmazonSpider
 from .spiders.FlipkartSpider import FlipkartSpider
 
@@ -33,8 +34,8 @@ class Controller:
         #if the keyword is headlines
         if keyword == 'headlines':    
             self.start_crawler(self.runner,NDTVSpider)
-            self.start_crawler(self.runner,TimesOfIndiaSpider)
-        
+            # self.start_crawler(self.runner,TimesOfIndiaSpider)
+            # self.start_crawler(self.runner,OnionSpider)
         #if the keyword is product
         elif keyword == 'product':
             self.start_crawler(self.runner,AmazonSpider,product)

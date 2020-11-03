@@ -23,4 +23,4 @@ class TimesOfIndiaSpider(scrapy.Spider):
 
     #execuctes when the spider finished scraping
     def close(self, spider, reason):
-        self.output_callback(self.headlines,"TimesofIndia")
+        self.output_callback(self.headlines,"TOI")

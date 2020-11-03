@@ -10,6 +10,7 @@ def ProductsView(req):
 		data = Controller().controller('product', req.POST['query'])
 		data = [] if data==None else [*data['Flipkart'], *data['Amazon']]
 		data = sorted(data, key=lambda p: int(re.sub(r'[₹,]', '', p['price'])))
+		
 		return render(
 			req, 
 			'products.html', 
