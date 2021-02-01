@@ -11,6 +11,7 @@ body{
 	padding: 1vw;
 	border-radius: 10px;
 	outline: none;
+	align-self: center;
 }
 
 .nav{
@@ -135,8 +136,12 @@ body{
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	width: 100%;
+	width: 80%;
 	margin: 1% 0;
+}
+
+.full-width {
+	width: 100%;
 }
 
 .dot {
@@ -173,6 +178,19 @@ body{
 	padding: 1vw;
 }
 
+.summary-container {
+	display: flex;
+	width: 60vw;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	border-radius: 10px;
+	background-color: white;
+	padding: 2vw;
+	box-shadow: 2px 2px 5px 2px rgba(100, 149, 237, 0.4);
+	margin-bottom: 2vw;
+}
+
 @media only screen and (max-width:1024px) {
 
 	.nav {
@@ -185,6 +203,10 @@ body{
 	}
 
 	.news-container {
+		width: 86vw;
+	}
+
+	.summary-container {
 		width: 86vw;
 	}
 

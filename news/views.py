@@ -1,52 +1,37 @@
 from django.shortcuts import render
-from joblib import load
-import os
-from django.conf import settings
+from summarizer import Summarizer
+import requests
+from newspaper import fulltext
 
+from .forms import QueryForm
 from Scrapers.controller import Controller
 
-# with open(os.path.join(settings.BASE_DIR, 'news_classifier.joblib'), 'rb') as f:
-model = load(os.path.join(settings.BASE_DIR, 'news_classifier.joblib'))
-tfidf = load(os.path.join(settings.BASE_DIR, 'tfidf.joblib'))
-cats = [
-    'Atheism',
-    'Graphics',
-    'Hardware',
-    'Hardware',
-    'Software',
-    'Software',
-    'For Sale',
-    'Politics',
-    'Politics',
-    'Sports',
-    'Sports',
-    'Security',
-    'Electronics',
-    'Medicine',
-    'Space',
-    'Religion',
-    'War and Weapons',
-    'Middle East',
-    'Politics',
-    'Religious Talks'
-]
+summarizer = Summarizer()
 
-def predict(text):
-	if text != None:
-		vector = tfidf.transform([text])
-		pred = model.predict(vector)
-		return cats[pred[0]]
+def getArticleText(url):
+    return fulltext(requests.get(url).text)
+
+def getSummary(text):
+    result = summarizer(text, min_length=20, ratio=0.25)
+    return "".join(result)
 
 def NewsView(req):
-	data = Controller().controller('headlines')
-	data = data['NDTV'].values()
-	for news in data:
-		news['category'] = predict(news['text'])
-	return render(
-		req, 
-		'news.html',
-		{
-			'toi': list(data),
-			'author': 'Times of India'
-		}
-	)
+    if req.method == 'POST':
+        form = QueryForm(req.POST)
+        data = Controller().controller('headlines', req.POST['query'])
+        data = data['GoogleNews']
+        main = data[0]
+        summary = getSummary(getArticleText(data[0]['link']))
+        main['summary'] = summary
+        return render(
+            req, 
+            'news.html',
+            {
+                'main': main,
+                'data': list(data[1:]),
+                'form': form
+            }
+        )
+    else:
+        form = QueryForm()
+        return render (req, 'news.html', {'form': form})

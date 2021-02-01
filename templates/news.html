@@ -1,25 +1,57 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<form action="" method="post" style="margin:5% 2%;">
+	{% csrf_token %}
+	{{ form }}
+</form>
+
 <div class="news-list-container">
 
 	<!-- list of news cards -->
-	{% for news in toi %}
-		{% if news.text != None %}
+	{% if main.title != None %}
+		<div class="summary-container">
+			<div class="news-headline-container">
+				<div class="news-headline">
+					<span class="headline"><a href={{main.link}}>{{main.title}}</a></span>
+					<div class="headline-border full-width">
+						<span class="dot"></span>
+						<span class="line"></span>
+						<span class="dot"></span>
+					</div>
+					<span class="author">{{ main.author }}</span>
+				</div>
+			</div>
+			<h5>Summary:</h5>
+			<div>{{ main.summary}}</div>
+		</div>
+	{% endif %}
+
+	
+	{% if data|length %}
+		<div class="headline-border">
+			<span class="dot"></span>
+			<span class="line"></span>
+			<span class="dot"></span>
+		</div>
+		<h3>Other Links</h3>
+	{% endif %}
+
+	{% for news in data %}
+		{% if news.title != None %}
 			<div class="news-container">
 				<div class="news-headline-container">
 					<div class="news-headline">
-						<span class="headline"><a href={{news.link}}>{{news.text}}</a></span>
-						<div class="headline-border">
+						<span class="headline"><a href={{news.link}}>{{news.title}}</a></span>
+						<div class="headline-border full-width">
 							<span class="dot"></span>
 							<span class="line"></span>
 							<span class="dot"></span>
 						</div>
-						<span class="author">{{ author }}</span>
-						<span style="margin-top:10px" class="author">{{ news.category }}</span>
+						<span class="author">{{ news.author }}</span>
 					</div>
 				</div>
-				<div class="news-text">{{news.desc}}</div>
 			</div>
 		{% endif %}
 	{% endfor %}

@@ -10,6 +10,9 @@ django = "*"
 scrapy = "*"
 sklearn = "*"
 joblib = "*"
+newspaper3k = "*"
+bert-extractive-summarizer = "*"
+torchvision = "*"
 
 [requires]
 python_version = "3.8"

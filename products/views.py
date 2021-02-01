@@ -8,6 +8,7 @@ def ProductsView(req):
 	if req.method == 'POST':
 		form = QueryForm(req.POST)
 		data = Controller().controller('product', req.POST['query'])
+		print(data)
 		data = [] if data==None else [*data['Flipkart'], *data['Amazon']]
 		data = sorted(data, key=lambda p: int(re.sub(r'[₹,]', '', p['price'])))
 		

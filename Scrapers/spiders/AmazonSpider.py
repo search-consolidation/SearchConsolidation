@@ -1,6 +1,5 @@
 import scrapy
 
-
 class AmazonSpider(scrapy.Spider):
 
     name = "amazon"
@@ -10,7 +9,7 @@ class AmazonSpider(scrapy.Spider):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.output_callback = kwargs.get('args').get('callback')
-        self.product = kwargs.get('args').get('product')
+        self.product = kwargs.get('args').get('query')
         self.start_urls[0] = self.start_urls[0] + self.product
 
     #scrapes the required data from the response

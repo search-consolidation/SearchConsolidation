@@ -9,15 +9,16 @@ class FlipkartSpider(scrapy.Spider):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.output_callback = kwargs.get('args').get('callback')
-        self.product = kwargs.get('args').get('product')
+        self.product = kwargs.get('args').get('query')
+
         self.start_urls[0] = self.start_urls[0] + self.product
     
     #scrapes the required data from the response    
     def parse(self, response):
 
-        all_products_names = response.css('._3wU53n::text').extract()
-        all_products_prices = response.css('._2rQ-NK::text').extract()
-        all_products_links = response.css('._31qSD5::attr(href)').extract()
+        all_products_names = response.css('._4rR01T::text').extract()
+        all_products_prices = response.css('._30jeq3._1_WHN1::text').extract()
+        all_products_links = response.css('._1fQZEK::attr(href)').extract()
 
         for i in range(5):
 
